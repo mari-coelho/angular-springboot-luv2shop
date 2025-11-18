@@ -1,0 +1,9 @@
+<!-- @for(tempProduct of products; track tempProduct.id) {
+    <p>{{tempProduct.name}} : {{tempProduct.price | currency:'USD'}}</p>
+} -->
+
+<p *ngFor="let tempProduct of products">
+
+  {{ tempProduct.name }}: {{ tempProduct.unitPrice | currency: 'EUR' }}
+
+</p>
