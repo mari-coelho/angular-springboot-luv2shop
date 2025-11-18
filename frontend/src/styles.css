@@ -6,6 +6,12 @@
  */
  @use 'bootstrap/scss/bootstrap' as *;
 
+/* 
+ * ----------------------------
+ * Common CSS
+ * ----------------------------
+ */
+
  *{
     margin:0;
     padding:0;
@@ -727,7 +733,7 @@ table.table.table-bordered th{
 }
 
 .detail-img{
-    width: 30% ;
+    width: 30%;
 }
 
 /**/
@@ -1044,5 +1050,5 @@ footer ul li{
     }
 }
 
-/* Importing Bootstrap SCSS file. */
+
 

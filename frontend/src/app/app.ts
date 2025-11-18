@@ -17,7 +17,7 @@ import { ProductList } from './components/product-list/product-list';
     NgbPaginationModule,
   ],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss'],
+  styleUrls: ['./app.css'],
 })
 export class App {
   title = 'angular-ecommerce';

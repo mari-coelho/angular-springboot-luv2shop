@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './product-category-menu.html',
-  styleUrls: ['./product-category-menu.scss'],
+  styleUrls: ['./product-category-menu.css'],
 })
 export class ProductCategoryMenu implements OnInit {
 

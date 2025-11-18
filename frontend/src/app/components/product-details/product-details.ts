@@ -8,7 +8,7 @@ import { Product } from '../../common/product';
   selector: 'app-product-details',
   imports: [CommonModule, RouterModule],
   templateUrl: './product-details.html',
-  styleUrl: './product-details.scss',
+  styleUrl: './product-details.css',
 })
 export class ProductDetails implements OnInit {
 
