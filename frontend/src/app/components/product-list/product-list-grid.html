@@ -16,7 +16,9 @@
             </a>
 
             <div class="price">{{ tmpProduct.unitPrice | currency : 'EUR' }}</div>
-            <button (click)="addToCart(tmpProduct)" class="btn btn-primary btn-sm">Add to cart</button>
+            <button (click)="addToCart(tmpProduct)" class="btn btn-primary btn-sm">
+              Add to cart
+            </button>
           </div>
         </div>
 
@@ -29,38 +31,36 @@
       <!-- begin footer -->
       <div class="footer-pagination">
         <div class="row">
+          <div class="col-md-6"></div>
           <div class="col-md-6">
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-9" style="padding-left: 30%">
-                  <ngb-pagination
-                    [(page)]="thePageNumber"
-                    [pageSize]="thePageSize"
-                    [collectionSize]="totalElements"
-                    [maxSize]="5"
-                    [boundaryLinks]="true"
-                    (pageChange)="listProducts()"
-                  >
-                  </ngb-pagination>
+            <div class="row">
+              <div class="col-md-9" style="padding-left: 30%">
+                <ngb-pagination
+                  [(page)]="thePageNumber"
+                  [pageSize]="thePageSize"
+                  [collectionSize]="totalElements"
+                  [maxSize]="5"
+                  [boundaryLinks]="true"
+                  (pageChange)="listProducts()"
+                >
+                </ngb-pagination>
 
-                  <div class="col-md-3 mt-2" style="text-align: right;">
-                    <span class="mr-2">Page Size</span>
-                    <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
-                      <option selected="true">5</option>
-                      <option>10</option>
-                      <option>20</option>
-                      <option>50</option>
-                    </select>
-
-                  </div>
-
-
+                <div class="col-md-3 mt-2" style="text-align: right">
+                  <span class="mr-2">Page Size</span>
+                  <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                    <option>2</option>
+                    <option selected="true">5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- end footer -->
     </div>
   </div>
 </div>

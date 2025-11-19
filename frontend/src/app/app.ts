@@ -5,6 +5,7 @@ import { Search } from './components/search/search';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductList } from './components/product-list/product-list';
 import { CartStatus } from './components/cart-status/cart-status';
+import { CartDetails } from './components/cart-details/cart-details';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { CartStatus } from './components/cart-status/cart-status';
     Search,
     NgbPaginationModule,
     CartStatus,
+    CartDetails,
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
