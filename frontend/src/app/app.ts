@@ -6,6 +6,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductList } from './components/product-list/product-list';
 import { CartStatus } from './components/cart-status/cart-status';
 import { CartDetails } from './components/cart-details/cart-details';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { CartDetails } from './components/cart-details/cart-details';
     NgbPaginationModule,
     CartStatus,
     CartDetails,
+    ReactiveFormsModule,
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
