@@ -4,6 +4,7 @@ import { ProductCategoryMenu } from './components/product-category-menu/product-
 import { Search } from './components/search/search';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductList } from './components/product-list/product-list';
+import { CartStatus } from './components/cart-status/cart-status';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { ProductList } from './components/product-list/product-list';
     ProductCategoryMenu,
     Search,
     NgbPaginationModule,
+    CartStatus,
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],

@@ -3,6 +3,8 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Product } from '../../common/product';
+import { CartService } from '../../services/cart-service';
+import { CartItem } from '../../common/cart-item';
 
 @Component({
   selector: 'app-product-details',
@@ -11,12 +13,11 @@ import { Product } from '../../common/product';
   styleUrl: './product-details.css',
 })
 export class ProductDetails implements OnInit {
-
   product!: Product;
 
   constructor(
     private productService: ProductService,
-    //private cartService: CartService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {}
 
@@ -29,15 +30,13 @@ export class ProductDetails implements OnInit {
   handleProductDetails() {
     // get "id" parameter string and convert string to number
     const theProductId: number = +this.route.snapshot.paramMap.get('id')!;
-    this.productService.getProduct(theProductId).subscribe(
-      data => {
+    this.productService.getProduct(theProductId).subscribe((data) => {
       this.product = data;
-    }
-  )
+    });
   }
-/*   addToCart(theProduct: Product) {
+  addToCart(theProduct: Product) {
     // console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
     const theCartItem = new CartItem(theProduct);
     this.cartService.addToCart(theCartItem);
-  } */
+  }
 }

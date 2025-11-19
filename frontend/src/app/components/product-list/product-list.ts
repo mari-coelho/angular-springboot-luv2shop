@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartService } from '../../services/cart-service';
+import { CartItem } from '../../common/cart-item';
 
 @Component({
   selector: 'app-product-list',
@@ -28,7 +30,7 @@ export class ProductList implements OnInit {
 
   constructor(
     private productService: ProductService,
-    //private cartService: CartService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {}
 
@@ -105,10 +107,10 @@ export class ProductList implements OnInit {
     };
   }
 
-  /*   addToCart(theProduct: Product) {
-    // console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
+  addToCart(theProduct: Product) {
+    //console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
     // TODO ... do the real work
     const theCartItem = new CartItem(theProduct);
     this.cartService.addToCart(theCartItem);
-  } */
+  }
 }
