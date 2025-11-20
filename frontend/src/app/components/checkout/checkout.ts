@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Luv2ShopForm } from '../../services/luv2-shop-form.service';
 import { Country, State, ICountry, IState } from 'country-state-city';
+import { Luv2ShopValidators } from '../../validators/luv2-shop-validators';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +13,8 @@ import { Country, State, ICountry, IState } from 'country-state-city';
   styleUrl: './checkout.css',
 })
 export class Checkout implements OnInit {
-  checkoutFormGroup!: FormGroup;
+  checkoutFormGroup: FormGroup = new FormGroup({});
+  submitted: boolean = false;
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
@@ -29,31 +31,34 @@ export class Checkout implements OnInit {
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        email: [''],
+        firstName: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        lastName: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        email: [
+          '',
+          [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+        ],
       }),
       shippingAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        country: [''],
-        zipCode: [''],
+        street: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        city: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        state: ['', [Validators.required]],
+        country: ['', [Validators.required]],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}-[0-9]{3}$')]],
       }),
       billingAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        country: [''],
-        zipCode: [''],
+        street: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        city: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        state: ['', [Validators.required]],
+        country: ['', [Validators.required]],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}-[0-9]{3}$')]],
       }),
       creditCard: this.formBuilder.group({
-        cardType: [''],
-        nameOnCard: [''],
-        cardNumber: [''],
-        securityCode: [''],
-        expirationMonth: [''],
-        expirationYear: [''],
+        cardType: ['', [Validators.required]],
+        nameOnCard: ['', [Validators.required, Luv2ShopValidators.notOnlyWhitespace]],
+        cardNumber: ['', [Validators.required, Validators.pattern('[0-9]{16}')]],
+        securityCode: ['', [Validators.required, Validators.pattern('[0-9]{3}')]],
+        expirationMonth: ['', [Validators.required]],
+        expirationYear: ['', [Validators.required]],
       }),
     });
 
@@ -121,17 +126,15 @@ export class Checkout implements OnInit {
       .subscribe((data) => (this.creditCardMonths = data));
   }
 
-  onSubmit() {
-    console.log('Handling the submit button');
+  onSubmit(): void {
+    this.submitted = true;
+
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+      return;
+    }
+
+    console.log('Handling form submission');
     console.log(this.checkoutFormGroup.get('customer')?.value);
-    console.log('Endereço de Envio:', this.checkoutFormGroup.get('shippingAddress')?.value);
-    console.log(
-      'País Selecionado:',
-      this.checkoutFormGroup.get('shippingAddress')?.value.country.name
-    );
-    console.log(
-      'Estado Selecionado:',
-      this.checkoutFormGroup.get('shippingAddress')?.value.state.name
-    );
   }
 }
