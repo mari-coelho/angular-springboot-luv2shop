@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductCategory } from '../../common/product-category';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-category-menu',
@@ -12,21 +12,18 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./product-category-menu.css'],
 })
 export class ProductCategoryMenu implements OnInit {
-
   productCategories: ProductCategory[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.listProductCategories();
   }
 
   listProductCategories() {
-    this.productService.getProductCategories().subscribe(
-      data => {
-        console.log('Product Categories=' + JSON.stringify(data));
-        this.productCategories = data;
-      }
-    );
+    this.productService.getProductCategories().subscribe((data) => {
+      console.log('Product Categories=' + JSON.stringify(data));
+      this.productCategories = data;
+    });
   }
 }
