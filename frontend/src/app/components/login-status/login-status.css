@@ -1,0 +1,10 @@
+.login-status-header {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente texto e botões */
+    white-space: nowrap; /* Impede que o texto quebre linha */
+}
+
+.login-status-user-info {
+    margin-right: 10px;
+    font-weight: bold;
+}

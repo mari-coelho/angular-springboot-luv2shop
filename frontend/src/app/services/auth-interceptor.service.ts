@@ -20,7 +20,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     const securedEndpoints = ['http://localhost:8080/api/orders'];
 
     if (securedEndpoints.some((url) => request.urlWithParams.includes(url))) {
-      const token = await (this.auth.getAccessTokenSilently());
+      const token = await lastValueFrom(this.auth.getAccessTokenSilently());
 
         console.log('Access Token: ', token);
         request = request.clone({

@@ -7,7 +7,7 @@ import { ProductList } from './components/product-list/product-list';
 import { CartStatus } from './components/cart-status/cart-status';
 import { CartDetails } from './components/cart-details/cart-details';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginStatusComponent } from './components/login-status/login-status.component';
+import { LoginStatus } from './components/login-status/login-status';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,7 @@ import { LoginStatusComponent } from './components/login-status/login-status.com
     CartStatus,
     CartDetails,
     ReactiveFormsModule,
-    LoginStatusComponent,
+    LoginStatus,
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],

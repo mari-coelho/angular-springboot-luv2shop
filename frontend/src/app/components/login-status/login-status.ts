@@ -2,17 +2,18 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import myAppConfig from '../../config/my-app-config';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login-status',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './login-status.component.html',
-  styleUrl: './login-status.component.css'
+  imports: [CommonModule, RouterModule],
+  templateUrl: './login-status.html',
+  styleUrl: './login-status.css'
 })
 
 
-export class LoginStatusComponent implements OnInit {
+export class LoginStatus implements OnInit {
   isAuthenticated: boolean = false;
   profileJson: string | undefined;
   userEmail: string | undefined;
