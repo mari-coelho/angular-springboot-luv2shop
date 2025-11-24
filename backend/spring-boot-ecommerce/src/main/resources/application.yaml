@@ -7,10 +7,14 @@ spring:
   jpa:
     properties:
       hibernate:
-        #dialect: org.hibernate.dialect.MySQL8Dialect
+        #dialect: org.hibernate.dialect.MySQLDialect
   data:
     rest:
       base-path: /api
+      detection-strategy: ANNOTATED
+
+allowed.origins: http://localhost:4200
+
 
 okta:
   oauth2:
