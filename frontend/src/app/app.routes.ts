@@ -4,6 +4,7 @@ import { ProductDetails } from './components/product-details/product-details';
 import { CartDetails } from './components/cart-details/cart-details';
 import { Checkout } from './components/checkout/checkout';
 
+
 export const routes: Routes = [
   { path: 'checkout', component: Checkout },
   { path: 'cart-details', component: CartDetails },

@@ -11,3 +11,9 @@ spring:
   data:
     rest:
       base-path: /api
+
+okta:
+  oauth2:
+    audience: http://localhost:8080
+    client-id: 5w3wMFVMLQPeaYG3EAnf08GCROr8J3Y0
+    issuer: https://dev-f0f8kv88nfxt50ot.us.auth0.com/
