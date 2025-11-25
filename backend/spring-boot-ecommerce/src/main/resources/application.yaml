@@ -13,6 +13,13 @@ spring:
       base-path: /api
       detection-strategy: ANNOTATED
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-f0f8kv88nfxt50ot.us.auth0.com/
+
+
 allowed.origins: http://localhost:4200
 
 

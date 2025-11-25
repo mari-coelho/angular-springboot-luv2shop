@@ -203,15 +203,11 @@ export class Checkout implements OnInit {
   }
 
   resetCart() {
-    //reset cart data
-    this.cartService.cartItems = [];
-    this.cartService.totalPrice.next(0);
-    this.cartService.totalQuantity.next(0);
 
-    //reset the form
+    this.cartService.resetCart();
+
     this.checkoutFormGroup.reset();
 
-    //navigate back to  the products page
     this.router.navigateByUrl('/products');
   }
 
