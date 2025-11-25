@@ -11,12 +11,13 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.http.HttpMethod;
+
+import com.luv2code.ecommerce.entity.Order;
 import com.luv2code.ecommerce.entity.Product;
 import com.luv2code.ecommerce.entity.ProductCategory;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
-
 
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
@@ -44,6 +45,11 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         // disable HTTP methods for ProductCategory: PUT, POST, DELETE
         config.getExposureConfiguration()
                 .forDomainType(ProductCategory.class)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+
+        config.getExposureConfiguration()
+                .forDomainType(Order.class)
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 

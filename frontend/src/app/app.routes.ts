@@ -5,8 +5,14 @@ import { CartDetails } from './components/cart-details/cart-details';
 import { Checkout } from './components/checkout/checkout';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { MembersPage } from './components/members-page/members-page';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 export const routes: Routes = [
+  {
+    path: 'order-history',
+    component: OrderHistoryComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'members',
     component: MembersPage,

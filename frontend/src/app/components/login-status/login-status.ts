@@ -9,20 +9,18 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './login-status.html',
-  styleUrl: './login-status.css'
+  styleUrl: './login-status.css',
 })
-
-
 export class LoginStatus implements OnInit {
   isAuthenticated: boolean = false;
   profileJson: string | undefined;
   userEmail: string | undefined;
+  userFullName!: string | '';
+
   storage: Storage = sessionStorage;
 
+  constructor(private auth: AuthService, @Inject(DOCUMENT) private doc: Document) {}
 
-  constructor(private auth: AuthService, 
-             @Inject(DOCUMENT) private doc: Document){}
-   
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe((authenticated: boolean) => {
       this.isAuthenticated = authenticated;
@@ -34,6 +32,16 @@ export class LoginStatus implements OnInit {
       this.storage.setItem('userEmail', JSON.stringify(this.userEmail));
       console.log('User ID: ', this.userEmail);
     });
+  }
+
+  getUserDetails() {
+    if (this.isAuthenticated) {
+      this.auth.user$.subscribe((user) => {
+        this.userFullName = user?.name as string;
+        const theEmail = user?.email;
+        this.storage.setItem('userEmail', JSON.stringify(theEmail)); // Store email in session storage
+      });
+    }
   }
 
   login() {
