@@ -28,3 +28,16 @@ okta:
     audience: http://localhost:8080
     client-id: 5w3wMFVMLQPeaYG3EAnf08GCROr8J3Y0
     issuer: https://dev-f0f8kv88nfxt50ot.us.auth0.com/
+
+server:
+  port: 8443  
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore.p12
+    key-store-password: changeit
+    enabled: true
+
+stripe:
+  api-key: "pk_test_51SXQVvPVMl4H7fDhBmBdYEjieicvGtmITqkSXp8e7rPg5xz0HgTMaHNx607tlZBHWlDEipxLARajvUSOlfZwHrcE00M2YS6Rjo"
+  public-key: ${STRIPE_PUBLIC_KEY}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET}
