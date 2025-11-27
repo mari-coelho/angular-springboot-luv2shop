@@ -8,9 +8,9 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root',
 })
 export class CheckoutService {
-  private purchaseUrl = 'https://localhost:8443/api/checkout/purchase';
+  private purchaseUrl = '/api/checkout/purchase';
 
-  private paymentIntentUrl = 'https://localhost:8443/api/checkout/payment-intent';
+  private paymentIntentUrl = '/api/checkout/payment-intent';
 
   constructor(private httpClient: HttpClient) {}
 
