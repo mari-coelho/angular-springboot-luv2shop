@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   backend:
@@ -7,38 +6,36 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy 
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/full-stack-ecommerce?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=ecommerceapp
       - SPRING_DATASOURCE_PASSWORD=ecommerceapp
-      
       - SERVER_PORT=8080
       - SERVER_SSL_ENABLED=false
-
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
-      - SPRING_SQL_INIT_MODE=never
-
+      - SPRING_SQL_INIT_MODE=never 
       - SPRING_SQL_INIT_DATA_LOCATIONS=classpath:schema/luv2shop_db.sql,classpath:schema/luv2shop_order-tables.sql
-      
+
       - STRIPE_API_KEY=${STRIPE_API_KEY}
       - STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
     networks:
       - ecommerce-network
-
+    restart: on-failure 
 
   frontend:
     build: ./frontend
     container_name: angular-ecommerce-frontend
     ports:
-      - "80:80" 
+      - "80:80"
     depends_on:
       - backend
     networks:
       - ecommerce-network
-
+    restart: unless-stopped
 
   db:
     image: mysql:8.0
@@ -50,11 +47,16 @@ services:
       MYSQL_PASSWORD: ecommerceapp
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3307:3306" 
+      - "3307:3306"
     networks:
       - ecommerce-network
     volumes:
       - mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
 
 networks:
   ecommerce-network:
