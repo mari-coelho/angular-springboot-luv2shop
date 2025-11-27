@@ -15,7 +15,7 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
 @RestController
-@RequestMapping("/api/checkout") // O prefixo base é este
+@RequestMapping("/api/checkout")
 public class CheckoutController {
 
     private CheckoutService checkoutService;
@@ -30,8 +30,7 @@ public class CheckoutController {
         return purchaseResponse;
     }
 
-    // --- ADICIONAR ESTE MÉTODO ---
-    // Isto cria a rota /api/checkout/payment-intent
+
     @PostMapping("/payment-intent")
     public ResponseEntity<String> createPaymentIntent(@RequestBody PaymentInfo paymentInfo) throws StripeException {
 

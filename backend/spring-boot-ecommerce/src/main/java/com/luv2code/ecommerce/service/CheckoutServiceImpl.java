@@ -80,7 +80,6 @@ public class CheckoutServiceImpl implements CheckoutService {
         return new PurchaseResponse(orderTrackingNumber);
     }
 
-    // --- NOVO MÉTODO OBRIGATÓRIO ---
     @Override
     public PaymentIntent createPaymentIntent(PaymentInfo paymentInfo) throws StripeException {
 
@@ -91,7 +90,6 @@ public class CheckoutServiceImpl implements CheckoutService {
         params.put("amount", paymentInfo.getAmount());
         params.put("currency", paymentInfo.getCurrency());
         params.put("payment_method_types", paymentMethodTypes);
-        // Opcional: Adicionar descrição ou email para aparecer no dashboard do Stripe
         params.put("description", "Luv2Shop Purchase");
 
         return PaymentIntent.create(params);
