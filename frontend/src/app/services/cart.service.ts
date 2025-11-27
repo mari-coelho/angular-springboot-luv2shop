@@ -45,19 +45,15 @@ export class CartService {
   } */
 
   addToCart(theCartItem: CartItem) {
-    // Verifica se já temos o item no carrinho
     let existingCartItem: CartItem | undefined = undefined;
 
     if (this.cartItems.length > 0) {
-      // Find retorna o item ou undefined
       existingCartItem = this.cartItems.find((tempCartItem) => tempCartItem.id === theCartItem.id);
     }
 
     if (existingCartItem != undefined) {
-      // Se existe, incrementa a quantidade
       existingCartItem.quantity++;
     } else {
-      // Se não existe, adiciona ao array
       this.cartItems.push(theCartItem);
     }
 
@@ -127,15 +123,10 @@ export class CartService {
   }
 
   resetCart() {
-    // 1. Limpa o array de itens na memória
     this.cartItems = [];
 
-    // 2. Zera os valores observáveis (para atualizar o header/carrinho visualmente)
     this.totalPrice.next(0);
     this.totalQuantity.next(0);
-
-    // 3. REMOVE DO STORAGE (O pulo do gato!)
-    // Sem isso, ao dar F5, o construtor lê o storage antigo e traz tudo de volta
     this.storage.removeItem('cartItems');
   }
 }

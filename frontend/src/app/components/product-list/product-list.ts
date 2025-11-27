@@ -20,7 +20,6 @@ export class ProductList implements OnInit {
   previousCategoryId: number = 1;
   searchMode: boolean = false;
 
-  // new properties for pagination
   thePageNumber: number = 1;
   thePageSize: number = 5;
   totalElements: number = 0;
@@ -72,20 +71,13 @@ export class ProductList implements OnInit {
     } else {
       this.currentCategoryId = 1;
     }
-    //
-    // Check if we have a different category than previous
-    // Note: Angular will reuse a component if it is currently being viewed
-    //
 
-    // if we have a different category id than previous
-    // then set thePageNumber back to 1
     if (this.previousCategoryId != this.currentCategoryId) {
       this.thePageNumber = 1;
     }
 
     this.previousCategoryId = this.currentCategoryId;
 
-    // now get the products for the given category id
     this.productService
       .getProductListPaginate(this.thePageNumber - 1, this.thePageSize, this.currentCategoryId)
       .subscribe(this.processResult());

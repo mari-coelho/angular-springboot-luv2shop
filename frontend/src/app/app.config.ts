@@ -8,6 +8,7 @@ import { routes } from './app.routes';
 import { ProductService } from './services/product.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import myAppConfig from './config/my-app-config';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,13 +21,11 @@ export const appConfig: ApplicationConfig = {
       clientId: myAppConfig.auth.clientId,
       authorizationParams: {
         redirect_uri: window.location.origin,
-        audience: 'myAppConfig.auth.authorizationParams',
+        audience: myAppConfig.auth.authorizationParams,
       },
     }),
-    provideNgxStripe(
-      'pk_test_51SXQVvPVMl4H7fDhBmBdYEjieicvGtmITqkSXp8e7rPg5xz0HgTMaHNx607tlZBHWlDEipxLARajvUSOlfZwHrcE00M2YS6Rjo'
-    ),
-    ProductService, // This should be a standalone provider
+    provideNgxStripe(environment.stripePublicKey),
+    ProductService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

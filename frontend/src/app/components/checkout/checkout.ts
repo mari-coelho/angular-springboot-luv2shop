@@ -56,7 +56,7 @@ export class Checkout implements OnInit {
   };
 
   elementsOptions: StripeElementsOptions = {
-    locale: 'en', // Podes alterar para 'pt' se preferires
+    locale: 'en',
   };
 
   displayError: string = '';
@@ -97,16 +97,10 @@ export class Checkout implements OnInit {
         country: ['', [Validators.required]],
         zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}-[0-9]{3}$')]],
       }),
-      // Grupo do cartão de crédito simplificado (o Stripe valida os dados sensíveis)
-      creditCard: this.formBuilder.group({
-        // Podes adicionar campos aqui se quiseres guardar o nome no cartão, etc.
-      }),
+      creditCard: this.formBuilder.group({}),
     });
 
     this.countries = Country.getAllCountries();
-
-    // NOTA: Removemos a lógica de creditCardMonths e creditCardYears
-    // porque o Stripe Elements gere a data de validade automaticamente.
 
     this.reviewCartDetails();
   }
